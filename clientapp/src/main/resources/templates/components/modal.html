@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modal</title>
+  </head>
+  <body>
+    <div th:fragment="modal">
+      <!-- Modal Profile -->
+      <div
+        class="modal fade"
+        id="profileModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header d-flex justify-content-center">
+              <h1 class="modal-title fs-4 fw-bold" id="exampleModalLabel">
+                Profile Info
+              </h1>
+            </div>
+            <div class="modal-body">
+              <div class="my-3">
+                <table class="table table-bordered table-success">
+                  <tbody>
+                    <tr>
+                      <input type="text" id="userId" hidden />
+                    </tr>
+                    <tr>
+                      <th class="col-4 table-info">Name</th>
+                      <td class="col-8" id="userName"></td>
+                    </tr>
+                    <tr>
+                      <th class="col-4 table-info">Email</th>
+                      <td class="col-8" id="userEmail"></td>
+                    </tr>
+                    <tr>
+                      <th class="col-4 table-info">Phone</th>
+                      <td class="col-8" id="userPhone"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#updateProfileModal"
+                id="updateUserProfile"
+              >
+                Update
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Update Profile -->
+      <div
+        class="modal fade"
+        id="updateProfileModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header d-flex justify-content-center">
+              <h1 class="modal-title fs-4 fw-bold" id="UpdateProfileModalLabel">
+                Edit Profile
+              </h1>
+            </div>
+            <div class="modal-body">
+              <form id="FormUpdateProfile">
+                <div class="modal-body">
+                  <div class="input-grup my-2">
+                    <label for="updateName" class="form-label">Name :</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="updateName"
+                      required
+                    />
+                    <input type="text" id="updateId" hidden />
+                  </div>
+                  <div class="input-grup my-2">
+                    <label for="updateEmail" class="form-label">Email :</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="updateEmail"
+                      required
+                    />
+                  </div>
+                  <div class="input-grup my-2">
+                    <label for="updatePhone" class="form-label">Phone :</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="updatePhone"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button
+                    id="updateProfile"
+                    type="submit"
+                    class="btn btn-success"
+                  >
+                    Save
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal Logout -->
+        <div
+          class="modal fade"
+          id="logoutModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header d-flex justify-content-center">
+                <h1>Logout</h1>
+              </div>
+              <div class="modal-body">
+                <p class="fs-5">
+                  Are you sure you want to log out of your account?
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Cancel
+                </button>
+
+                <form class="d-flex" th:action="@{/logout}" th:method="POST">
+                  <button
+                    class="btn btn-outline-danger"
+                    id="logout"
+                    type="submit"
+                  >
+                    Logout
+                  </button>
+                </form>
+
+                <!-- Modal Index -->
+                <div
+                  class="modal fade"
+                  id="IndonesiaModal"
+                  data-bs-backdrop="static"
+                  data-bs-keyboard="false"
+                  tabindex="-1"
+                  aria-labelledby="IndonesiaModalLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title" id="IndonesiaModalLabel">Indonesia</h1>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="card">
+                          <img
+                            th:src="@{/img/WP.png}"
+                            class="card-img-top"
+                            alt=""
+                          />
+                          <div class="card-body">
+                            <h5 class="card-title">Indoensia</h5>
+                            <p class="card-text">
+                              Some quick example text to build on the card title
+                              and make up the bulk of the card's content.
+                            </p>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal"
+                          >
+                            Close
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

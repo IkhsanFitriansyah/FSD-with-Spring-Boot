@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <title>Navbar</title>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light " th:fragment="navbar">
+        <div class="container-fluid">
+          <a class="navbar-brand" th:href="@{/}">
+            <img th:src="@{/img/Transformer-icon.png}" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+          SIBKM-Ikhsan
+          </a>
+
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+
+              <!-- <li class="nav-item">
+                <a class="nav-link" th:classappend="${isActive == 'home' ? 'active fw-bold' : ''}" th:href="@{/}">Home</a>
+              </li> -->
+
+              <li class="nav-item">
+                <a class="nav-link" th:classappend="${isActive == 'region' ? 'active fw-bold' : ''}" 
+                th:href="@{/region}"
+                sec:authorize="hasAnyRole('USER','ADMIN')">Region</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" th:classappend="${isActive == 'country' ? 'active fw-bold' : ''}" 
+                th:href="@{/country}"
+                sec:authorize="hasRole('ADMIN')">Country</a>
+              </li>
+              </ul>
+              
+                <div class="wrap-user">
+                  <div class="dropdown">
+                    <button class="btn btn-success dropdown-toggle" type="button"
+                      data-bs-toggle="dropdown" aria-expanded="false"  th:text="${name}"></button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                      <li>
+                        <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#profileModal"
+                          type="button" onclick="getUserProfile()">
+                         <i class="fa-solid fa-user"></i> Profile </button>
+                      </li>
+                      <li>
+                        <form class="d-flex" th:action="@{/logout}" th:method="POST"
+                          onclick="return confirm('Are you sure to Logout??')">
+                          <button class="dropdown-item" id="logout" type="submit">Logout</button>
+                        </form>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+            
+          </div>
+        </div>
+    </nav>
+      
+
+      
+      <!-- <script th:src="@{/js/home.js}"></script> -->
+
+</body>
+</html>

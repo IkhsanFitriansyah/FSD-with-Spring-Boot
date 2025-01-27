@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="shortcut icon" th:href="@{/img/Transformer-icon.png}" type="image/x-icon">
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <title>Add - Country</title>
+</head>
+
+<body>
+
+    <section class="container">
+        <div class="card mt-5">
+            <h2 class="card-header fw-bold">Add Country</h2>
+            <form th:action="@{/country/CreateSaved}" th:method="POST" th:object="${country}">
+                <div class="card-body">
+                    
+                    <div class="input-group mb-4 mt-3">
+                        <span class="input-group-text fw-bold bg-secondary-subtle" id="name">Name</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="name" th:field="*{name}" required>
+                        </div>
+                        <div class="input-group mb-4">   
+                        <span class="input-group-text fw-bold bg-secondary-subtle" id="name">Code</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="code" th:field="*{code}" required>
+                        </div> 
+
+                        <div class="input-group mb-4">
+                        <span class="input-group-text fw-bold bg-secondary-subtle" id="name">Region-ID</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="code" th:field="*{region.id}" required>
+                        </div>
+                    <div class="d-flex gap-3 justify-content-end">
+                        <a th:href="@{/country}" class="btn btn-secondary">Back</a>
+                        <button type="submit" class="btn btn-success" onclick="return confirm('Is the Region-ID correct?')">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <div class="container">
+        <table class="table mt-3 table-hover table-striped table-bordered text-center
+        shadow-lg p-3 mb-5 bg-body rounded">
+      <thead class="table-dark">
+          <tr>
+              <th class="col-2">Region ID</th>
+              <th class="col-4">Region Name</th>
+              </tr>
+      </thead>
+      <tbody th:each="region : ${regions}">
+          <tr>
+          <td th:text="${region.id}"></td>
+          <td th:text="${region.name}"></td>
+          </tr>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
